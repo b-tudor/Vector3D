@@ -11,10 +11,10 @@
 *.sln.docstates
 
 # Project and Solution files
+VisualStudio/
 *.sln
 *.vcxproj
 *.vcxproj.filters
-Vector3D/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

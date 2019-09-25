@@ -1,7 +1,7 @@
-/* Brant Tudor
- * 2019
- * Vector Class to represent a three dimensional Cartesian coordinate vector
- * along with common operations associated with these objects. 
+/*  Brant Tudor
+ *  (c) 2019
+ *  Vector Class to represent a three dimensional Cartesian coordinate vector
+ *  along with common operations associated with these objects. 
  */
 
 #pragma once

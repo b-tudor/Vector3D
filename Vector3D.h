@@ -1,7 +1,13 @@
+/* Brant Tudor
+ * 2019
+ * Vector Class to represent a three dimensional Cartesian coordinate vector
+ * along with common operations associated with these objects. 
+ */
+
 #pragma once
 #ifndef VECTOR_3D_H
 #define	VECTOR_3D_H
-// #define INCLUDE_RANDOMIZER
+#define INCLUDE_RANDOMIZER
 
 /*
 	CONSTRUCTORS/DESTRUCTORS

@@ -7,7 +7,7 @@
 #pragma once
 #ifndef VECTOR_3D_H
 #define	VECTOR_3D_H
-#define INCLUDE_RANDOMIZER
+// #define INCLUDE_RANDOMIZER
 #include <string>
 
 /*

@@ -7,11 +7,13 @@
 #pragma once
 #ifndef VECTOR_3D_H
 #define	VECTOR_3D_H
-#define INCLUDE_RANDOMIZER
-#include <cmath>
 #include <string>
-
+// The randomizer function will create a vector whose point lies on the surface of
+// a unit sphere. To use this function, uncomment the following line and include 
+// the Rando class found at: https://github.com/b-tudor/Rando
+// #define INCLUDE_RANDOMIZER
 /*
+
 	CONSTRUCTORS/DESTRUCTORS
 
 	Vector3D();

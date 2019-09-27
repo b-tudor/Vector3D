@@ -8,6 +8,7 @@
 #ifndef VECTOR_3D_H
 #define	VECTOR_3D_H
 #include <string>
+#include <cmath>
 // The randomizer function will create a vector whose point lies on the surface of
 // a unit sphere. To use this function, uncomment the following line and include 
 // the Rando class found at: https://github.com/b-tudor/Rando

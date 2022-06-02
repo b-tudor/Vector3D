@@ -5,43 +5,46 @@
 #include "Rando.h"
 #endif
 
+// DESTRUCTOR + CONSTRUCTORS
 Vector3D::~Vector3D() { }
-Vector3D::Vector3D() :X(0), Y(0), Z(0) {}
-Vector3D::Vector3D(double x, double y, double z)
+Vector3D:: Vector3D() { r[0] = r[1] = r[2] = 0.0; }
+Vector3D:: Vector3D(double x, double y, double z)
 {
-	X = x;
-	Y = y;
-	Z = z;
+	r[0] = x;
+	r[1] = y;
+	r[2] = z;
 }
 
 
-
+// PUBLIC METHODS
 
 void Vector3D::set(double x, double y, double z)
 {
-	X = x;
-	Y = y;
-	Z = z;
+	r[0] = x;
+	r[1] = y;
+	r[2] = z;
 }
 
 
 void Vector3D::normalize() {
+	
 	double mag = norm();
-	if (mag != 0) {
-		X = X / mag;
-		Y = Y / mag;
-		Z = Z / mag;
+	
+	if (mag) {
+		r[0] = r[0] / mag;
+		r[1] = r[1] / mag;
+		r[2] = r[2] / mag;
 	}
 	else
-		X = Y = Z = 0;
+		r[0] = r[1] = r[2] = 0;
 }
 
 
 Vector3D& Vector3D::operator=(const Vector3D& rhs) {
 	if (this != &rhs) {
-		this->X = rhs.x();
-		this->Y = rhs.y();
-		this->Z = rhs.z();
+		this->r[0] = rhs.x();
+		this->r[1] = rhs.y();
+		this->r[2] = rhs.z();
 	}
 
 	return *this;
@@ -49,11 +52,11 @@ Vector3D& Vector3D::operator=(const Vector3D& rhs) {
 
 
 Vector3D& Vector3D::operator=(const double rhs) {
-	this->X = rhs;
-	this->Y = rhs;
-	this->Z = rhs;
+	this->r[0] = rhs;
+	this->r[1] = rhs;
+	this->r[2] = rhs;
 
-	return *this;
+	return (*this);
 }
 
 
@@ -67,35 +70,34 @@ bool Vector3D::equals(const Vector3D& rhs, double threshold) {
 
 // Addition
 Vector3D& Vector3D::operator+=(const Vector3D& rhs) {
-	this->X = this->X + rhs.x();
-	this->Y = this->Y + rhs.y();
-	this->Z = this->Z + rhs.z();
+	this->r[0] = this->r[0] + rhs.x();
+	this->r[1] = this->r[1] + rhs.y();
+	this->r[2] = this->r[2] + rhs.z();
 
-	return *this;
+	return (*this);
 }
 
 
 // Subtraction
 Vector3D& Vector3D::operator-=(const Vector3D& rhs) {
-	this->X = this->X - rhs.x();
-	this->Y = this->Y - rhs.y();
-	this->Z = this->Z - rhs.z();
-
-	return *this;
+	this->r[0] = this->r[0] - rhs.x();
+	this->r[1] = this->r[1] - rhs.y();
+	this->r[2] = this->r[2] - rhs.z();
+	return (*this);
 }
 
 
 // vector * scalar
 Vector3D& Vector3D::operator*=(const double scalar) {
-	this->X *= scalar;
-	this->Y *= scalar;
-	this->Z *= scalar;
+	this->r[0] *= scalar;
+	this->r[1] *= scalar;
+	this->r[2] *= scalar;
 	return (*this);
 }
 Vector3D& Vector3D::operator/=(const double scalar) {
-	this->X /= scalar;
-	this->Y /= scalar;
-	this->Z /= scalar;
+	this->r[0] /= scalar;
+	this->r[1] /= scalar;
+	this->r[2] /= scalar;
 	return (*this);
 }
 // scalar * vector  (non-member function)
@@ -106,32 +108,51 @@ Vector3D operator*(const double d, const Vector3D rhs) {
 
 // Squared Distance between i & j
 double Vector3D::distance2(const Vector3D i, const Vector3D j) {
-	double A = i.x() - j.x();
-	double B = i.y() - j.y();
-	double C = i.z() - j.z();
-	return A * A + B * B + C * C;
+	double A2 = i.x() - j.x();
+	A2 = A2 * A2;
+	double B2 = i.y() - j.y();
+	B2 = B2 * B2;
+	double C2 = i.z() - j.z();
+	C2 = C2 * C2;
+
+	return A2 + B2 + C2;
 }
 
 
+
+
+
+// OUTPUT METHODS
 
 std::string Vector3D::xyzOut(std::string symbol) {
 	using namespace std;
 	stringstream out;
 	out << left << setw(5) << symbol << right;
-	out << fixed << setprecision(5);
-	out << setw(10) << X
-		<< setw(10) << Y
-		<< setw(10) << Z;
+	out << fixed << setprecision(6);
+	out << setw(10) << x()
+		<< setw(10) << y()
+		<< setw(10) << z();
 
 	return out.str();
 }
 
+
+std::ostream& operator<<(std::ostream& os, const Vector3D& rhs)
+{
+	os << "(" << rhs.x() << ", " << rhs.y() << ", " << rhs.z() << ")";
+	return os;
+}
+
+
+
+
+
 #ifdef INCLUDE_RANDOMIZER
 // Create a unit vector that points randomly to a point on the surface of a unit sphere
 void Vector3D::randomize() {
-	X = Rando::rand_normal();
-	Y = Rando::rand_normal();
-	Z = Rando::rand_normal();
+	r[0] = Rando::rand_normal();
+	r[1] = Rando::rand_normal();
+	r[2] = Rando::rand_normal();
 	normalize();
 }
 #endif
